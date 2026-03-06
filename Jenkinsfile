@@ -9,7 +9,7 @@ pipeline {
         DOCKERHUB_CREDS = credentials('dockerhub-creds')
 
         // Docker image name
-        DOCKER_IMAGE = "vimalmahalingam/ci-cd-sonarqube-docker"
+        DOCKER_IMAGE = "vimalmahalingam/ci-cd-pipeline"
     }
 
     triggers {
@@ -21,7 +21,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 git branch: 'main',
-                    url: 'https://github.com/vimalmahalingam/ci-cd-sonarqube-docker.git',
+                    url: 'https://github.com/vimalmahalingam/CI-CD-Pipeline.git',
                     credentialsId: 'github-creds'
             }
         }
