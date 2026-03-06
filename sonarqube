@@ -1,0 +1,5 @@
+sonar.projectKey=ci-cd-sonarqube-docker
+sonar.projectName=CI/CD SonarQube Docker
+sonar.sources=.
+sonar.language=py
+sonar.python.version=3
