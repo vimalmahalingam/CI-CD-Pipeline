@@ -13,7 +13,7 @@ pipeline {
     stages {
         stage('Checkout') {
             steps {
-                git branch: 'main', url: 'https://github.com/your-username/ci-cd-sonarqube-docker.git'
+                git branch: 'main', url: 'https://github.com/your-vimalmahalingam/ci-cd-sonarqube-docker.git'
             }
         }
         stage('Build & Test') {
