@@ -2,19 +2,9 @@ pipeline {
     agent any
 
     environment {
-        // GitHub credentials (username/password or token)
         GITHUB_CREDS = credentials('github-creds')
-
-        // DockerHub credentials (username/password or token)
         DOCKERHUB_CREDS = credentials('dockerhub-creds')
-
-        // Docker image name
         DOCKER_IMAGE = "vimalmahalingam/ci-cd-pipeline"
-    }
-
-    triggers {
-        // Trigger build on every GitHub push
-        githubPush()
     }
 
     stages {
