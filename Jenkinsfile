@@ -18,26 +18,32 @@ pipeline {
 
         stage('Build & Test') {
             steps {
-                sh 'python3 -m unittest test_app.py'
+                bat 'python -m unittest test_app.py'
+            }
+        }
+
+        stage('Set Docker Context') {
+            steps {
+                bat 'docker context use desktop-linux'
             }
         }
 
         stage('Docker Build') {
             steps {
-                sh "docker build -t $DOCKER_IMAGE:${env.BUILD_NUMBER} ."
+                bat "docker build -t %DOCKER_IMAGE%:${env.BUILD_NUMBER} ."
             }
         }
 
         stage('Push to DockerHub') {
             steps {
-                sh "echo $DOCKERHUB_CREDS_PSW | docker login -u $DOCKERHUB_CREDS_USR --password-stdin"
-                sh "docker push $DOCKER_IMAGE:${env.BUILD_NUMBER}"
+                bat "echo %DOCKERHUB_CREDS_PSW% | docker login -u %DOCKERHUB_CREDS_USR% --password-stdin"
+                bat "docker push %DOCKER_IMAGE%:${env.BUILD_NUMBER}"
             }
         }
 
         stage('Deploy') {
             steps {
-                sh "docker run -d -p 8080:8080 $DOCKER_IMAGE:${env.BUILD_NUMBER}"
+                bat "docker run -d -p 8080:8080 %DOCKER_IMAGE%:${env.BUILD_NUMBER}"
             }
         }
     }
