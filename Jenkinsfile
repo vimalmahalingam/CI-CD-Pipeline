@@ -36,6 +36,7 @@ pipeline {
 
         stage('Push to DockerHub') {
             steps {
+                // Use the Personal Access Token stored in Jenkins credentials
                 bat "echo %DOCKERHUB_CREDS_PSW% | docker login -u %DOCKERHUB_CREDS_USR% --password-stdin"
                 bat "docker push %DOCKER_IMAGE%:${env.BUILD_NUMBER}"
             }
