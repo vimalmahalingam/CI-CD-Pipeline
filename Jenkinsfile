@@ -44,7 +44,7 @@ pipeline {
 
         stage('Deploy') {
             steps {
-                bat "docker rm -f $(docker ps -q --filter 'ancestor=%DOCKER_IMAGE%') || echo No old container"
+               bat "docker rm -f \$(docker ps -q --filter ancestor=%DOCKER_IMAGE%) || echo No old container"
                 bat "docker run -d -p 8081:8080 %DOCKER_IMAGE%:${env.BUILD_NUMBER}"
             }
         }
